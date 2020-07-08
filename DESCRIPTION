@@ -1,0 +1,20 @@
+Modified:
+Title: COVID-19 Monitor
+License: MIT
+DisplayMode: Normal
+Author: Lee Drake <b.lee.drake@gmail.com> but modified from Joe Cheng <joe@rstudio.com>
+AuthorUrl: www.xrf.guru
+Type: Shiny
+Tags: leaflet selective data tables absolute panel covid coronavirus
+
+
+
+
+#Original:
+#Title: SuperZip example
+#License: MIT
+#DisplayMode: Normal
+#Author: Joe Cheng <joe@rstudio.com>
+#AuthorUrl: http://www.rstudio.com/
+#Type: Shiny
+#Tags: leaflet selectize datatables absolutepanel
