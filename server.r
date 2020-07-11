@@ -142,12 +142,13 @@ function(input, output, session) {
     #temp.frame <- na.omit(temp.frame)
     
     scatter <- ggplot(aes(Date, Cases), data=temp.frame) +
+    stat_smooth() +
     geom_point(colour="blue", alpha=0.4) +
-    geom_line(aes(Date, TTR::DEMA(Cases, 7)), data=temp.frame) +
+    #geom_line(aes(Date, TTR::DEMA(Cases, 7)), data=temp.frame) +
     #geom_line()
-    theme_light() +
-    scale_x_date(date_breaks = "1 month") +
-    scale_y_continuous("Cases per 100,000")
+    theme_light(base_size=15) +
+    scale_x_date("", date_breaks = "1 month", date_labels="%b") +
+    scale_y_continuous("New Cases per 100,000", labels=scales::comma)
     
     scatter
   })
@@ -163,12 +164,13 @@ function(input, output, session) {
       #temp.frame <- na.omit(temp.frame)
       
       scatter <- ggplot(aes(Date, Deaths), data=temp.frame) +
+      stat_smooth() +
       geom_point(colour="blue", alpha=0.4) +
-      geom_line(aes(Date, TTR::DEMA(Deaths, 7)), data=temp.frame) +
+      #geom_line(aes(Date, TTR::DEMA(Deaths, 7)), data=temp.frame) +
       #geom_line()
-      theme_light() +
-      scale_x_date(date_breaks = "1 month") +
-      scale_y_continuous("Deaths per 100,000")
+      theme_light(base_size=15) +
+      scale_x_date("", date_breaks = "1 month", date_labels="%b") +
+      scale_y_continuous("New Deaths per 100,000", labels=scales::comma)
       
       scatter
     })

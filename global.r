@@ -1,3 +1,10 @@
+###Install Packages
+list.of.packages <- c("ggplot2", "tmap", "tmaptools", "dplyr", "sf", "dplyr",  "raster", "leaflet", "tidyverse", "zoo", "data.table", "scales", "DT", "TTR")
+new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
+if(length(new.packages)) lapply(new.packages, function(x) install.packages(x, repos="http://cran.rstudio.com/", dep = TRUE))
+
+
+
 library(ggplot2)      # For plotting
 library(tmap)         # For creating tmap
 library(tmaptools)    # For reading and processing spatial data related to tmap
@@ -8,8 +15,7 @@ library(leaflet)
 library(tidyverse)
 library(zoo)
 library(data.table)
-library(USAboundaries)
-library(USAboundariesData)
+
 
 lm_eqn = function(m) {
     
@@ -76,10 +82,10 @@ covid_data_gen <- function(directory="data/"){
             filter(!is.na(new_cases_7d_avg)) %>%
             mutate(cases_norm = new_cases/my.max(new_cases)) %>%
             mutate(deaths_norm = new_deaths/my.max(new_deaths)) %>%
-            mutate(cases_pop = cases/Pop) %>%
-            mutate(deaths_pop = deaths/Pop) %>%
-            mutate(new_cases_pop = new_cases/Pop) %>%
-            mutate(new_deaths_pop = new_deaths/Pop)
+            mutate(cases_pop = (cases/Pop)*100000) %>%
+            mutate(deaths_pop = (deaths/Pop)*100000) %>%
+            mutate(new_cases_pop = (new_cases)/Pop*100000) %>%
+            mutate(new_deaths_pop = (new_deaths/Pop)*100000)
     }
 
 
