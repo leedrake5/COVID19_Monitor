@@ -33,8 +33,8 @@ covid_data_gen <- function(directory="data/"){
 
     for(i in unique_counties){
         covid_county_list[[i]] <- covid_county_list[[i]] %>%
-            #mutate(date = as.Date(date)) %>%
-            #arrange(date) %>%
+            mutate(date = as.Date(date)) %>%
+            arrange(date) %>%
             mutate(new_cases = cases - dplyr::lag(cases)) %>% #new cases is diff over a 1-day lag
             mutate(new_cases_7d_avg = rollmean(new_cases, k=7, na.pad=TRUE, align="right")) %>%
             mutate(new_deaths = deaths - dplyr::lag(deaths)) %>%
@@ -46,8 +46,10 @@ covid_data_gen <- function(directory="data/"){
             mutate(deaths_norm = new_deaths/my.max(new_deaths)) %>%
             mutate(cases_pop = (cases/Pop)*100000) %>%
             mutate(deaths_pop = (deaths/Pop)*100000) %>%
-            mutate(new_cases_pop = (new_cases/Pop)*100000) %>%
-            mutate(new_deaths_pop = (new_deaths/Pop)*100000)
+            mutate(new_cases_pop = (new_cases)/Pop*100000) %>%
+            mutate(new_deaths_pop = (new_deaths/Pop)*100000) %>%
+            mutate(new_cases_7d_pop = (new_cases_7d_avg)/Pop*100000) %>%
+            mutate(new_deaths_7d_pop = (new_deaths_7d_avg/Pop)*100000)
     }
 
 

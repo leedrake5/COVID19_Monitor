@@ -26,7 +26,7 @@ navbarPage("COVID-19", id="nav",
 
         tags$hr(),
         numericInput("zipvar", "Zip Code", value=10004),
-        selectInput("displayvar", "Variable", c("Cases"="cases", "Deaths"="deaths", "New Cases"="new_cases", "New Deaths"="new_deaths", "New Cases 7 Day Average"="new_cases_7d_avg", "New Deaths 7 Day Average"="new_deaths_7d_avg", "Case History"="cases_norm", "Cases per 100,000"="cases_pop", "Death History"="deaths_norm", "Deaths per 100,000"="deaths_pop"), selected="cases_norm"),
+        selectInput("displayvar", "Variable", c("Cases"="cases", "Deaths"="deaths", "New Cases"="new_cases", "New Deaths"="new_deaths", "New Cases 7 Day Average"="new_cases_7d_avg", "New Deaths 7 Day Average"="new_deaths_7d_avg", "New Cases 7 Day Average Normalized"="new_cases_7d_pop", "New Deaths 7 Day Average Normalized"="new_deaths_7d_pop", "Case History"="cases_norm", "Cases per 100,000"="cases_pop", "Death History"="deaths_norm", "Deaths per 100,000"="deaths_pop"), selected="cases_norm"),
         uiOutput('datevarui'),
         tags$hr(),
         plotOutput("cases_timeseries", height = 200),

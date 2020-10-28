@@ -85,7 +85,9 @@ covid_data_gen <- function(directory="data/"){
             mutate(cases_pop = (cases/Pop)*100000) %>%
             mutate(deaths_pop = (deaths/Pop)*100000) %>%
             mutate(new_cases_pop = (new_cases)/Pop*100000) %>%
-            mutate(new_deaths_pop = (new_deaths/Pop)*100000)
+            mutate(new_deaths_pop = (new_deaths/Pop)*100000) %>%
+            mutate(new_cases_7d_pop = (new_cases_7d_avg)/Pop*100000) %>%
+            mutate(new_deaths_7d_pop = (new_deaths_7d_avg/Pop)*100000)
     }
 
 
