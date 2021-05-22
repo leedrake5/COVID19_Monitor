@@ -10,7 +10,7 @@ setwd("~/GitHub/COVID19_Monitor")
 
 ###Data Generation Function
 covid_data_gen <- function(directory="data/"){
-    covid_county_raw <- read.csv("https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv")
+    covid_county_raw <- read.csv(paste0(directory, "us-counties.csv"))
 
     covid_county_raw$index <- paste0(covid_county_raw$state, "_", covid_county_raw$county)
     county_pops <- read.csv(paste0(directory, "countypops.csv"))

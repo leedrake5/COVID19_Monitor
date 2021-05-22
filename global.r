@@ -101,3 +101,22 @@ covid_data_gen <- function(directory="data/"){
     date_bundle <- list(covid_county_processed=as.data.table(covid_county_processed), covid_county_merge_spatial=as.data.table(covid_county_merge_spatial))
     return(date_bundle)
 }
+
+time_slice <- function(mapfile, date="2020-03-31", display="cases_norm"){
+    covid_county_processed <- mapfile$covid_county_processed
+    covid.frame <- as.data.frame(covid_county_processed)
+    date_subet <- covid.frame[covid.frame$date %in% as.Date(date),]
+    
+    var_subset <- data.frame(index=date_subet$index, Selected=as.vector(as.numeric(date_subet[,display]) ))
+    
+    spatial_merge <- sp::merge(USA_counties, var_subset, by="index", duplicateGeoms=TRUE, all.x=TRUE)
+    
+    my_pal <- colorNumeric(palette = colorRamp(c('yellow', 'red')), domain = as.vector(as.numeric(var_subset$Selected)))
+
+    leaflet() %>%
+      addTiles(
+        urlTemplate = "//{s}.tiles.mapbox.com/v3/jcheng.map-5ebohr46/{z}/{x}/{y}.png",
+        attribution = 'Maps by <a href="http://www.mapbox.com/">Mapbox</a>'
+      )
+    
+}
